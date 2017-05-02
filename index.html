@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Font Family Test</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style>
+    @font-face {
+      font-family: "Blank";
+      src: url(fonts/AdobeBlank.otf.woff) format("woff");
+    }
+
+    li {
+      margin: 1rem 0;
+      line-height: 150%;
+    }
+  </style>
+</head>
+<body>
+<div id="app" v-bind:lang="lang">
+  <h1>Font Family Test</h1>
+  <p>指定したFont Familyでフォントがどのように見えるか検証。フォントが無い場合には、文字は表示されません（フォントAdobe Blankにフォールバックします）</p>
+
+  <div>
+    <input type="radio" id="ja" value="ja" v-model="lang">
+    <label for="ja"><code>lang="ja"</code></label>
+    <br>
+    <input type="radio" id="en" value="en" v-model="lang">
+    <label for="en"><code>lang="en"</code></label>
+    <br>
+    <input type="radio" id="none" value="" v-model="lang">
+    <label for="none"><code>lang=""</code></label>
+  </div>
+  <ul>
+    <li v-for="font in fontList">
+      <strong>{{font}}</strong><br/>
+      <ul>
+        <li>【和文】<span v-bind:style="{fontFamily : font + ', Blank'}">
+          拙者親方と申すは、お立ち会いの中に、御存知のお方も御座りましょうが・・・</span></li>
+        <li>【欧文】<span v-bind:style="{fontFamily : font + ', Blank'}">
+        The quick brown fox jumps over the lazy dog</span></li>
+      </ul>
+    </li>
+
+  </ul>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      lang: 'ja',
+      fontList: [
+        'sans-serif',
+        'serif',
+        'Noto Sans CJK JP',
+        'Noto Sans JP',
+        'Noto Sans Japanese',
+        'ヒラギノ角ゴ',
+        '游ゴシック体',
+        '游ゴシック',
+        'Yu Gothic',
+        'YuGothic',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'ヒラギノ角ゴ Pro W3',
+        'Hiragino Kaku Gothic ProN',
+        'メイリオ',
+        'Meiryo',
+        'Roboto',
+        'モトヤLシーダ3等幅',
+        'ソニーモバイルUDゴシック',
+        'ベビポップ',
+        '万葉行書',
+        'ハミング',
+        'UD角ゴ コンデンス80',
+        'ＭＳ Ｐゴシック'
+      ]
+    }
+  });
+</script>
+</body>
+</html>
